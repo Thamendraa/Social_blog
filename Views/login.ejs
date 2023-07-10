@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+body {
+  background-color: #5589be66;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: #5589be66;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+h1 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: Realway Semibold, Arial, sans-serif;
+}
+
+
+form input {
+  font-family: Realway Regular, Arial, sans-serif;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f5f5f5;
+  box-shadow: inset 0px 0px 5px #ddd;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="email"]:invalid:focus,
+input[type="password"]:invalid:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 12px 30px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #558ABE;
+  color: white;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #7aa3cc;
+}
+
+/* Add new CSS for the bottom div */
+.bottom-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.bottom-div p {
+  margin-right: 10px;
+  color: #ffffff;
+}
+
+</style>
+</head>
+<body>
+  <div class="login-form">
+    <h1>Login</h1>
+    <form action="/login" method="get">
+      <input type="email" id="email" name="email" placeholder="email or username" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p style=" display: flex; justify-content: center; align-items: center;">Forgot password?</p>
+    <div class="bottom-div">
+      <p>Don't have an account?</p>
+      <a href="/" class="w3-btn w3-round w3-medium w3-green" style="width:30%;">Sign up</a>
+    </div>
+  </div>
+</body>
+</html>
