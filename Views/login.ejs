@@ -93,12 +93,12 @@ form button:hover {
 <body>
   <div class="login-form">
     <h1>Login</h1>
-    <form action="/login" method="get">
+    <form action="/login" method="post">
       <input type="email" id="email" name="email" placeholder="email or username" required>
       <input type="password" id="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
-    <p style=" display: flex; justify-content: center; align-items: center;">Forgot password?</p>
+    <a href="/checkEmail" style=" display: flex; justify-content: center; align-items: center;">Forgot password?<a>
     <div class="bottom-div">
       <p>Don't have an account?</p>
       <a href="/" class="w3-btn w3-round w3-medium w3-green" style="width:30%;">Sign up</a>
