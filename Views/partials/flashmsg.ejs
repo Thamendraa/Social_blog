@@ -1,0 +1,31 @@
+<% if (msg.success) { %>
+    <div id="successMessage" class="w3-panel w3-pale-green w3-display-container w3-round w3-animate-top w3-right" style="width:fit-content; padding:0px 8px;">
+        <p class=" w3-padding-left w3-normal">
+            <i class="fa-solid fa-right-to-bracket"></i> <%=msg.success %>
+        </p>
+
+        <script>
+            setTimeout(function() {
+                var successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'none';
+              }, 3000);
+        </script>
+    </div>
+<% } %>
+
+<% if (msg.failure) { %>
+    <div id="failureMessage" class="w3-panel w3-pale-red w3-display-container w3-round w3-animate-top w3-right" style="width:fit-content; padding:0px 8px;">
+        <p class=" w3-padding-left w3-normal">
+            <i class="fa-solid fa-circle-exclamation"></i> <%=msg.failure %>
+        </p>
+
+        <script>
+            setTimeout(function() {
+                var successMessage = document.getElementById('failureMessage');
+                successMessage.style.display = 'none';
+              }, 4000);
+        </script>
+    </div>
+<% } %>
+
+     

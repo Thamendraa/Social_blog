@@ -13,7 +13,6 @@
       float: left;
       color: white;
       text-align: center;
-    
       padding: 14px 20px;
       text-decoration: none;
       font-size: 17px;
@@ -26,12 +25,12 @@
 
     /* Form styling */
     form {
-      max-width: 400px;
+      max-width: 800px;
       margin: 20px auto;
       padding: 20px;
-      background-color: #f2f2f2;
+      background-color: #ffffff;
       border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 5px rgba(128, 118, 118, 0.3);
     }
 
     form label {
@@ -41,16 +40,22 @@
     }
 
     form input[type="text"],
-    form textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    border-radius: 0;
+    position: relative;
+  }
+    form input[type="file"] {
+      display: none;
     }
 
-    form input[type="file"] {
-      margin-bottom: 10px;
+    form label[for="image"]::after {
+      
+      margin-left: 10px;
     }
 
     form img {
@@ -70,32 +75,34 @@
 
     /* Image preview */
     #image-preview {
-      display: none;
-      max-width: 200px;
+      display: block;
+      max-width: 400px;
       margin-top: 10px;
+      width: 100%;
     }
   </style>
 </head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="navbar">
-    <a href="#">Home</a>
+    <a href="#"><i class="fa fa-home" style="font-size:36px"></i></a>
     <a href="#">About</a>
     <a href="#">Contact</a>
     <div class="w3-display-topright"><img src="snowtops.jpg" class="w3-circle" alt="Alps"></div>
     
   </div>
-  <form>
-    <label for="image">Image:</label>
-    <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)"  />
+  <form action="/createBlog" method="post" enctype="multipart/form-data">
+    <label for="image"><i class="fa fa-file-image-o" style="font-size:36px"></i></label>
+    <input type="file" id="image" name="image"  onchange="previewImage(event)"  />
 
-    <img id="image-preview" src="#" alt="Image Preview" />
+    <img id="image-preview"  />
 
     <label for="heading">Heading:</label>
-    <input type="text" id="heading" name="heading" />
+    <input type="text" id="heading" name="title" />
 
     <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="10" cols="33"></textarea>
+    <textarea id="description" name="description" ></textarea>
 
     <input type="submit" value="Add Blog" />
   </form>

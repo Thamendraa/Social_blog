@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog View</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <style>
+    body {
+      padding: 20px;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .blog-post {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .blog-post:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-image {
+      max-width: auto;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .blog-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .blog-description {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .blog-createdAt {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .btn-group {
+      margin-top: 20px;
+    }
+
+    /* Add styling for comments section */
+    .comments-section {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .comment-form {
+      margin-bottom: 20px;
+    }
+
+    .comment-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .comment-name {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .comment-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .comment-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .comment {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment-author {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .comment-content {
+      margin-bottom: 5px;
+    }
+
+    .comment-date {
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="blog-post card">
+        <img class="blog-image card-img-top" src="<%-blog.image%>" alt="Blog Image">
+        <div class="card-body">
+          <h2 class="blog-title card-title"><%-blog.title%></h2>
+          <p class="blog-description card-text"><%-blog.description%></p>
+          <p class="blog-createdAt">Created on: <%-blog.createdAt%></p>
+          <div class="btn-group">
+            <a href="/delete/<%-blog.id%>" class="btn btn-primary">Delete</a>
+            <a href="/editBlog/<%-blog.id%>" class="btn btn-danger">Edit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="row mt-5">
+      <div class="col">
+        <h3>Comments</h3>
+        <div class="comments-section">
+          <form class="comment-form">
+            <textarea class="comment-input" rows="4" placeholder="Your Comment" required></textarea>
+            <button type="submit" class="comment-btn">Submit</button>
+          </form>
+
+          <!-- Example comment -->
+          <div class="comment">
+            <p class="comment-author">John Doe</p>
+            <p class="comment-content">This is a great blog post. I learned a lot!</p>
+            <p class="comment-date">Posted on June 18, 2023</p>
+          </div>
+
+          <!-- Example comment -->
+          <div class="comment">
+            <p class="comment-author">Jane Smith</p>
+            <p class="comment-content">Thank you for sharing this informative post. It was very helpful.</p>
+            <p class="comment-date">Posted on June 19, 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

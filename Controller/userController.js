@@ -2,10 +2,11 @@ const { name } = require("ejs");
 const DB = require("../Config/dbConfig");
 const db = require("../Model/index");
 const USER = db.user;
-const path = require("path");
 const bcrypt = require("bcryptjs");
-const { text } = require("express");
 const sendEmail = require("../Services/sendEmail");
+const flash = require("connect-flash");
+const jwt = require("jsonwebtoken");
+// const cookies = require("");
 
 exports.renderRegistration = async (req, res) => {
   res.render("userRegistration");
@@ -21,7 +22,7 @@ exports.renderEmail = async (req, res) => {
 exports.registerUser = async (req, res) => {
   console.log(req.file);
   const { userName, email, userAddress, password, image } = req.body;
-
+  console.log(req.filename);
   //create user
   const created = await USER.create({
     name: userName,
@@ -38,12 +39,12 @@ exports.registerUser = async (req, res) => {
     text: message,
     subject: subject,
   });
-  res.redirect("home");
+  res.redirect("login");
 };
 
 //for login
 exports.userLogin = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { email, password } = req.body;
 
   const userSearch = await USER.findAll({
     where: {
@@ -57,6 +58,11 @@ exports.userLogin = async (req, res) => {
     res.redirect("userRegistration");
   }
   if (bcrypt.compareSync(password, userSearch[0].password)) {
+    var token = jwt.sign({ id: userSearch[0].id }, process.env.SECRET_KEY, {
+      expiresIn: 86400,
+    });
+    res.cookie("token", token);
+    req.flash("success", "Welcome " + userSearch[0].name);
     res.redirect("home");
   } else {
     res.redirect("login");
@@ -64,7 +70,7 @@ exports.userLogin = async (req, res) => {
   }
 };
 
-//for logout
+//for forgate password
 exports.checkEmail = async (req, res) => {
   const { email } = req.body;
   const check = await USER.findOne({
@@ -113,13 +119,9 @@ exports.otpVerify = async (req, res) => {
   return res.redirect("/login");
 };
 
-//resetPassword
-// exports.resetPwd = async (req, res) => {
-//   const { newPassword, confirmPassword } = rq.body;
-//   if (newPassword.length == confirmPassword.length) {
-//     return (finalPassword = confirmPassword);
-//   } else {
-//     console.log("flas msg pwd not match");
-//   }
-//   console.log(finalPassword);
-// };
+//logout
+exports.makeLogout = (req, res) => {
+  res.clearCookie("token");
+  // req.flash("success", "Logged out successfully!");
+  res.redirect("/login");
+};

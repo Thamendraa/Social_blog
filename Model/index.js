@@ -1,5 +1,5 @@
 const dbConfig = require("../Config/dbConfig");
-const { Sequelize, DataTypes, HasMany } = require("sequelize");
+const { Sequelize, DataTypes, hasMany } = require("sequelize");
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -28,7 +28,18 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("./userModel.js")(sequelize, DataTypes);
-// db.blog = require("./blogModel.js")(sequelize, DataTypes);
-// db.user.hasMany(db.blog);
-// db.blog.belongsTo(db.user);
+db.blog = require("./blogModel.js")(sequelize, DataTypes);
+db.comment = require("./commentModel")(sequelize, DataTypes);
+//to show the created by (relation between user and blogs)
+db.user.hasMany(db.blog);
+db.blog.belongsTo(db.user);
+
+//for comment (relation between blog and comments)
+db.blog.hasMany(db.comment);
+db.comment.belongsTo(db.blog);
+
+//for comment (realation beween user and comment)
+db.user.hasMany(db.comment);
+db.comment.belongsTo(db.user);
+
 module.exports = db;

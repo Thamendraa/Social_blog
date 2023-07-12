@@ -10,17 +10,17 @@ var storage = multer.diskStorage({
   },
 });
 
-// var blogStorage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "./uploads/blog/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
+var blogStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads/blogs/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
 
 module.exports = {
   multer,
   storage,
-  //   blogStorage,
+  blogStorage,
 };
